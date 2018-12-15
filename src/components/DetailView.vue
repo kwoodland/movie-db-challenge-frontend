@@ -49,7 +49,7 @@
         },
         computed: {
 			getImgUrl() {
-				return `http://localhost:8080/images/${this.selectedMovie.poster}`;
+				return `${location.protocol}//${location.host}/images/${this.selectedMovie.poster}`;
             },
 	        getSourceUrl() {
 				return this.selectedMovie.source;

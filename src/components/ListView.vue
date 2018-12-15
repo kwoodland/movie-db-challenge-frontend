@@ -14,7 +14,7 @@
         },
         methods: {
 	        getImgUrl(movie) {
-		        return `http://localhost:8080/images/${movie.poster}`;
+		        return `${location.protocol}//${location.host}/images/${movie.poster}`;
 	        },
             isHighlighted(movie) {
 	        	return this.selectedMovie.id === movie.id;
