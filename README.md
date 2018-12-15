@@ -1,4 +1,4 @@
-# Brainbits-Aufgabe
+# Aufgabe
 
 Hey Team,
 
