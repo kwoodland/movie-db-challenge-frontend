@@ -1,34 +1,37 @@
-# brainbits-aufgabe
+# Brainbits-Aufgabe
 
-## Project setup
-```
-npm install
-```
+Hey Team,
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+ich versuche mal etwas über mein Gedankengang zu schreiben und warum ich was implementiert habe.
+Also fange ich mal mit dem Framework an. Als JS Framework habe ich VueJS verwendet. Ich habe VueJS gewählt, da ich vor 
+kurzem das erste mal damit gearbeitet habe. Ich habe noch nicht viel mit VueJS entwickelt. Allerdings hat es mir seit beginn super gefallen.
+Außerdem kommt VueJS mit einer schlanken aber starken Toolbox um schnell und einfach zu Entwickeln. Ich fande für diese Aufgabe war dies
+die richtige Wahl. Nicht zu viel, nicht zu wenig. Vue router habe ich verwendet um das "deep linking" von den 
+Filmen zu vereinfachen.
+Wir haben links die Detailansicht und rechts die Listenansicht.
+Die Daten werden hauptsächlich von der "Home.vue" verwaltet, da die "DetailView" bzw.
+"ListView" relativ "dumme Komponenten" sein sollen, die keine Logik (nur view Logik) enthalten sollen. 
+Mit Api.js wird die Rest-Schnittstelle angesprochen. Da dies allerdings einee sehr kleine Aufgabe ist, wohl etwas überflüssig.
+Dennoch mit der Option im Hinterkopf die Anwendung später mit mehr Features zu erweitern.
+Tests habe ich ehrlich gesagt für VueJS nocht nie geschrieben (da gerade vieles Neuland). Habe angefangen ein paar zu schreiben, 
+da müsste ich mich aber wohl noch etwas mit der Doku beschäftigen.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Ich denke grob war's das jetzt erst mal. Den Rest werden wir wohl auch persönlich dann besprechen.
 
-### Run your tests
-```
-npm run test
-```
+Viele Grüße
+Kevin
 
-### Lints and fixes files
-```
-npm run lint
-```
+Hier kurz die Informationen um alles einzurichten:
 
-### Run your unit tests
-```
-npm run test:unit
-```
+Vorbereitung:
+`npm install -g @vue/cli-service-global`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. `git clone git@github.com:kwoodland/movie-db-challenge-frontend.git`
+2. `cd movie-db-challenge-frontend`
+3. `npm install`
+4. `npm run serve`
+5. Standartmäßig auf `http://localhost:8080/` erreichbar.
+
+Tests (Nicht fertig):
+`npm run test:unit`
+
