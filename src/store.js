@@ -10,11 +10,15 @@ export default new Vuex.Store({
 	state: {
 		movies: null,
 		selectedMovie: null,
-		isLoading: false
+		isLoading: false,
+		isError: false
 	},
 	mutations: {
 		setLoading: (state, isLoading) => {
 			state.isLoading = isLoading;
+		},
+		setError: (state, isError) => {
+			state.isError = isError;
 		},
 		setMovies: (state, movies) => {
 			state.movies = movies;
@@ -32,7 +36,8 @@ export default new Vuex.Store({
 				state.commit('selectMovie', response.data[0]);
 				state.commit('setLoading', false);
 			}).catch(error => {
-				//TODO: Error handling
+				state.commit('setLoading', false);
+				state.commit('setError', true);
 			});
 		}
 	}

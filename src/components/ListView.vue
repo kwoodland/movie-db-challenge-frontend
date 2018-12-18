@@ -5,24 +5,22 @@
 </template>
 
 <script>
-    import store from '../store';
-
 	export default {
 		name: "ListView",
         methods: {
-			onSelect: (movie) => {
-				store.commit('selectMovie', movie);
+			onSelect: function (movie) {
+				this.$store.commit('selectMovie', movie);
             },
-	        getImgUrl(movie) {
+	        getImgUrl: function (movie) {
 		        return `${location.protocol}//${location.host}/images/${movie.poster}`;
 	        },
-            isHighlighted(movie) {
-				return store.state.selectedMovie ? store.state.selectedMovie.id === movie.id : false;
+            isHighlighted: function (movie) {
+				return this.$store.state.selectedMovie ? this.$store.state.selectedMovie.id === movie.id : false;
             }
         },
         computed: {
-			movies: () => {
-				return store.state.movies;
+			movies: function () {
+				return this.$store.state.movies;
             }
         }
 	};
@@ -30,7 +28,6 @@
 
 <style scoped>
     .thumbnails {
-        /*width: 50%;*/
         float: left;
         list-style: none;
         padding: 0 0 0 1em;
@@ -58,7 +55,6 @@
     }
 
     .thumbnail img {
-        /*height: 163px;*/
-        height: auto !important;
+        height: auto;
     }
 </style>
