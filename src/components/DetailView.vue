@@ -72,7 +72,7 @@
 <style scoped>
     .info {
         position: relative;
-        width: 50%;
+        /*width: 50%;*/
         float: left;
         line-height: 1.5;
         margin: 0 0 2em 0;
@@ -150,5 +150,11 @@
     .director .popover {
         position: relative;
         display: block;
+    }
+
+    @media (max-width: 575.98px) {
+        .info .synopsis {
+            margin-left: 0 !important;
+        }
     }
 </style>

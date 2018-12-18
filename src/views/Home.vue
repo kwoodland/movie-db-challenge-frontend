@@ -1,7 +1,14 @@
 <template>
     <div class="home">
-        <DetailView v-if="moviesLoaded && !isLoading"></DetailView>
-        <ListView v-if="moviesLoaded && !isLoading"></ListView>
+        <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+            <div class="col-md-6 sol-sm-12 col-xs-12">
+                <DetailView v-if="moviesLoaded && !isLoading"></DetailView>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <ListView v-if="moviesLoaded && !isLoading"></ListView>
+            </div>
+        <!--</div>-->
         <b-alert v-if="isError" show variant="danger">Can not get movies - Please try again later.</b-alert>
     </div>
 </template>

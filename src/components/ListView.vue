@@ -30,7 +30,7 @@
 
 <style scoped>
     .thumbnails {
-        width: 50%;
+        /*width: 50%;*/
         float: left;
         list-style: none;
         padding: 0 0 0 1em;
@@ -55,5 +55,10 @@
     .highlighted, .thumbnail:hover {
         border-color: #0092dd;
         box-shadow: 0 0 3px 1px #0092dd;
+    }
+
+    .thumbnail img {
+        /*height: 163px;*/
+        height: auto !important;
     }
 </style>
