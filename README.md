@@ -1,5 +1,7 @@
 # Aufgabe
 
+EDIT: Im refactoring branch bin ich gerade etwas am umstrukturieren. Dort verwende ich jetzt vuex um das state management zu erleichtern. Außerdem werde ich die Komponenten noch etwas generalisieren. Die Readme werde ich dann auch noch etwas anpassen.
+
 Hey Team,
 
 ich versuche mal etwas über mein Gedankengang zu schreiben und warum ich was implementiert habe.
@@ -26,11 +28,11 @@ Hier kurz die Informationen um alles einzurichten:
 Vorbereitung:
 `npm install -g @vue/cli-service-global`
 
-1. `git clone git@github.com:kwoodland/movie-db-challenge-frontend.git`
+1. `git clone https://github.com/kwoodland/movie-db-challenge-frontend`
 2. `cd movie-db-challenge-frontend`
 3. `npm install`
 4. `npm run serve`
-5. Standartmäßig auf `http://localhost:8080/` erreichbar.
+5. Standardmäßig auf `http://localhost:8080/` erreichbar.
 
 Tests (Nicht fertig):
 `npm run test:unit`
