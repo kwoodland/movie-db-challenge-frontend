@@ -1,28 +1,30 @@
 <template>
     <ul class="thumbnails">
-        <li class="thumbnail" v-bind:class="{ highlighted: isHighlighted(movie)}" v-for="movie in movies" @click="onSelect(movie)"><img :src="getImgUrl(movie)"></li>
+        <li class="thumbnail" v-bind:class="{ highlighted: isHighlighted(movie)}" v-for="movie in movies" @click="onSelect(movie)">
+            <img :src="getImgUrl(movie)">
+        </li>
     </ul>
 </template>
 
 <script>
 	export default {
 		name: "ListView",
-        methods: {
+		methods: {
 			onSelect: function (movie) {
 				this.$store.commit('selectMovie', movie);
-            },
-	        getImgUrl: function (movie) {
-		        return `${location.protocol}//${location.host}/images/${movie.poster}`;
-	        },
-            isHighlighted: function (movie) {
+			},
+			getImgUrl: function (movie) {
+				return `${location.protocol}//${location.host}/images/${movie.poster}`;
+			},
+			isHighlighted: function (movie) {
 				return this.$store.state.selectedMovie ? this.$store.state.selectedMovie.id === movie.id : false;
-            }
-        },
-        computed: {
+			}
+		},
+		computed: {
 			movies: function () {
 				return this.$store.state.movies;
-            }
-        }
+			}
+		}
 	};
 </script>
 

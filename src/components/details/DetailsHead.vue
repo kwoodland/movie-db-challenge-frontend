@@ -32,18 +32,25 @@
 <script>
 	export default {
 		name: "DetailsHead",
+        methods: {
+			onActorClick: function (movie) {
+				console.log('selected movie: ', movie);
+                this.$store.commit('selectMovie', movie);
+			}
+        },
         computed: {
 	        movie: function () {
 		        return this.$store.state.selectedMovie;
 	        },
 	        getMoviesWithActor: function () {
 		        return this.$store.state.movies.filter(movie => movie.actor === this.$store.state.selectedMovie.actor).map(movie => {
-			        return `<span>${this.movie.title}</span>`;
+			        //TODO: Fix onActorClick
+		        	return `<span>${movie.title}</span>`;
 		        });
 	        },
 	        getMoviesWithDirector: function () {
 		        return this.$store.state.movies.filter(movie => movie.director === this.$store.state.selectedMovie.director).map(movie => {
-			        return `<span>${this.movie.title}</span>`
+		        	return `<span>${movie.title}</span>`
 		        });
 	        }
         }
