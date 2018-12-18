@@ -7,7 +7,7 @@
 </template>
 
 <script>
-	import Api from './../Api';
+	import api from '../api/index'; //Remove index?
 	import DetailView from './../components/DetailView';
 	import ListView from './../components/ListView';
 
@@ -21,7 +21,7 @@
 			ListView
 		},
 		created () {
-			(new Api()).get().then(response => {
+			api.getMovies().then(response => {
 				this.movies = response.data;
 				if (this.movieId) {
 					this.selectedMovie = this.movies.find(movie => movie.id === this.movieId);
@@ -36,7 +36,7 @@
 			return {
 				movies: [],
 				selectedMovie: undefined,
-                isError: false
+				isError: false
 			};
 		},
 		methods: {
