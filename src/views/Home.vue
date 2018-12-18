@@ -1,13 +1,14 @@
 <template>
     <div class="home">
-        <DetailView v-if="selectedMovie" :movies="movies" :selectedMovie="selectedMovie"></DetailView>
-        <ListView v-if="movies.length" :movies="movies" :onSelect="onMovieSelected" :selectedMovie="selectedMovie"></ListView>
+        <DetailView v-if="moviesLoaded && !isLoading"></DetailView>
+        <ListView v-if="moviesLoaded && !isLoading"></ListView>
         <b-alert v-if="isError" show variant="danger">Can not get movies - Please try again later.</b-alert>
     </div>
 </template>
 
 <script>
-	import api from '../api/index'; //Remove index?
+    import store from '../store';
+
 	import DetailView from './../components/DetailView';
 	import ListView from './../components/ListView';
 
@@ -21,16 +22,11 @@
 			ListView
 		},
 		created () {
-			api.getMovies().then(response => {
-				this.movies = response.data;
-				if (this.movieId) {
-					this.selectedMovie = this.movies.find(movie => movie.id === this.movieId);
-				} else {
-					this.selectedMovie = this.movies[0];
-				}
-			}).catch(error => {
-				this.isError = true;
-			});
+			store.dispatch('loadMovies').then(response => {
+				//TODO
+            }).catch(error => {
+
+            });
 		},
 		data () {
 			return {
@@ -39,15 +35,17 @@
 				isError: false
 			};
 		},
-		methods: {
-			onMovieSelected: function (movie) {
-				this.$router.push(movie.id);
-				this.selectedMovie = movie;
-			}
-		},
+        computed: {
+			moviesLoaded: () => {
+				return !!store.state.movies;
+            },
+            isLoading: () => {
+				return store.state.isLoading;
+            }
+        },
 		watch: {
 			$route (to, from) {
-				this.selectedMovie = this.movies.find(movie => movie.id === to.params.movieId);
+				store.commit('selectMovie', store.state.movies.find(movie => movie.id === to.params.movieId));
 			}
 		}
 	};

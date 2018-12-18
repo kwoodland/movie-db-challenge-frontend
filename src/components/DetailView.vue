@@ -3,11 +3,11 @@
         <div class="credits">
             <div class="actor">
                 <i class="glyphicon glyphicon-user"></i>
-                <span>{{selectedMovie.actor}}</span>
+                <span>{{movie.actor}}</span>
                 <div class="popover-wrapper">
                     <div class="popover bottom">
                         <div class="arrow"></div>
-                        <h3 class="popover-title">More Movies with {{selectedMovie.actor}}</h3>
+                        <h3 class="popover-title">More Movies with {{movie.actor}}</h3>
                         <div class="popover-content">
                             <p v-for="movie in getMoviesWithActor" v-html="movie"></p>
                         </div>
@@ -16,11 +16,11 @@
             </div>
             <div class="director">
                 <i class="glyphicon glyphicon-film"></i>
-                <span>{{selectedMovie.director}}</span>
+                <span>{{movie.director}}</span>
                 <div class="popover-wrapper">
                     <div class="popover bottom">
                         <div class="arrow"></div>
-                        <h3 class="popover-title">Movies directed by {{selectedMovie.director}}</h3>
+                        <h3 class="popover-title">Movies directed by {{movie.director}}</h3>
                         <div class="popover-content">
                             <p v-for="movie in getMoviesWithDirector" v-html="movie"></p>
                         </div>
@@ -28,11 +28,11 @@
                 </div>
             </div>
         </div>
-        <h3 class="title">{{selectedMovie.title}}<small> ({{selectedMovie.year}})</small></h3>
-        <h4 class="tagline">{{selectedMovie.tagline}}</h4>
+        <h3 class="title">{{movie.title}}<small> ({{movie.year}})</small></h3>
+        <h4 class="tagline">{{movie.tagline}}</h4>
         <img :src="getImgUrl">
         <p class="synopsis">
-            {{selectedMovie.synopsis}}
+            {{movie.synopsis}}
         </p>
         <p class="source">
             Source: <a :href="getSourceUrl" target="_blank">themoviedb.org</a>
@@ -41,28 +41,29 @@
 </template>
 
 <script>
+    import store from '../store';
+
 	export default {
 		name: "DetailView",
-        props: {
-			selectedMovie: Object,
-            movies: Array
-        },
         computed: {
+			movie: () => {
+				return store.state.selectedMovie;
+            },
 			getImgUrl() {
-				return `${location.protocol}//${location.host}/images/${this.selectedMovie.poster}`;
+				return `${location.protocol}//${location.host}/images/${store.state.selectedMovie.poster}`;
             },
 	        getSourceUrl() {
-				return this.selectedMovie.source;
+		        return store.state.selectedMovie.source;
             },
 	        getMoviesWithActor() {
-		        return this.movies.filter(movie => movie.actor === this.selectedMovie.actor).map(movie => {
+		        return store.state.movies.filter(movie => movie.actor === store.state.selectedMovie.actor).map(movie => {
 			        return `<span>${movie.title}</span>`;
 		        });
             },
             getMoviesWithDirector() {
-	        	return this.movies.filter(movie => movie.director === this.selectedMovie.director).map(movie => {
-	        		return `<span>${movie.title}</span>`
-                });
+	            return store.state.movies.filter(movie => movie.director === store.state.selectedMovie.director).map(movie => {
+		            return `<span>${movie.title}</span>`
+	            });
             }
         }
 	};

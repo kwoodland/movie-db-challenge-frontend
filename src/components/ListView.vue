@@ -5,19 +5,24 @@
 </template>
 
 <script>
+    import store from '../store';
+
 	export default {
 		name: "ListView",
-        props: {
-			movies: Array,
-            onSelect: Function,
-            selectedMovie: Object
-        },
         methods: {
+			onSelect: (movie) => {
+				store.commit('selectMovie', movie);
+            },
 	        getImgUrl(movie) {
 		        return `${location.protocol}//${location.host}/images/${movie.poster}`;
 	        },
             isHighlighted(movie) {
-	        	return this.selectedMovie.id === movie.id;
+				return store.state.selectedMovie ? store.state.selectedMovie.id === movie.id : false;
+            }
+        },
+        computed: {
+			movies: () => {
+				return store.state.movies;
             }
         }
 	};
