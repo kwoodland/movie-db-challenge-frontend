@@ -1,11 +1,11 @@
 <template>
     <div class="home">
         <div class="col-md-6 col-sm-12 col-xs-12">
-            <DetailView v-if="moviesLoaded && !isLoading"></DetailView>
+            <DetailView v-if="moviesLoaded && !isLoading && !isError"></DetailView>
 
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
-            <ListView v-if="moviesLoaded && !isLoading"></ListView>
+            <ListView v-if="moviesLoaded && !isLoading && !isError" :movies="movies"></ListView>
         </div>
         <div class="col-md-12 col-md-12- col-xs-12">
             <LoadingIndicator v-if="isLoading"/>
@@ -38,9 +38,7 @@
 		},
 		data () {
 			return {
-				movies: [],
-				selectedMovie: undefined,
-				isError: false
+				selectedMovie: undefined
 			};
 		},
 		computed: {
@@ -49,7 +47,13 @@
 			},
 			isLoading: function () {
 				return this.$store.state.isLoading;
-			}
+			},
+            movies: function () {
+                return this.$store.state.movies;
+            },
+            isError: function () {
+                return this.$store.state.isError;
+            }
 		},
 		watch: {
 			$route (to, from) {

@@ -9,6 +9,9 @@
 <script>
 	export default {
 		name: "ListView",
+        props: {
+			movies: Array
+        },
 		methods: {
 			onSelect: function (movie) {
 				this.$store.commit('selectMovie', movie);
@@ -18,11 +21,6 @@
 			},
 			isHighlighted: function (movie) {
 				return this.$store.state.selectedMovie ? this.$store.state.selectedMovie.id === movie.id : false;
-			}
-		},
-		computed: {
-			movies: function () {
-				return this.$store.state.movies;
 			}
 		}
 	};
