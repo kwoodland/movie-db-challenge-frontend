@@ -4,7 +4,7 @@
             <small> ({{movie.year}})</small>
         </h3>
         <h4 class="tagline">{{movie.tagline}}</h4>
-        <img :src="getImgUrl">
+        <img :src="imageUrl">
         <p class="synopsis">
             {{movie.synopsis}}
         </p>
@@ -18,7 +18,7 @@
 			movie: function () {
                 return this.$store.state.selectedMovie;
 			},
-	        getImgUrl: function () {
+	        imageUrl: function () {
 		        return `${location.protocol}//${location.host}/images/${this.$store.state.selectedMovie.poster}`;
 	        }
         }

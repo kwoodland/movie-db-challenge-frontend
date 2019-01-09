@@ -1,7 +1,7 @@
 <template>
     <ul class="thumbnails">
         <li class="thumbnail" v-bind:class="{ highlighted: isHighlighted(movie)}" v-for="movie in movies" @click="onSelect(movie)">
-            <img :src="getImgUrl(movie)">
+            <img :src="imageUrl(movie)">
         </li>
     </ul>
 </template>
@@ -12,15 +12,17 @@
         props: {
 			movies: Array
         },
+        computed: {
+	        imageUrl: function (movie) {
+		        return `${location.protocol}//${location.host}/images/${movie.poster}`;
+	        },
+	        isHighlighted: function (movie) {
+		        return this.$store.state.selectedMovie ? this.$store.state.selectedMovie.id === movie.id : false;
+	        }
+        },
 		methods: {
 			onSelect: function (movie) {
 				this.$store.commit('selectMovie', movie);
-			},
-			getImgUrl: function (movie) {
-				return `${location.protocol}//${location.host}/images/${movie.poster}`;
-			},
-			isHighlighted: function (movie) {
-				return this.$store.state.selectedMovie ? this.$store.state.selectedMovie.id === movie.id : false;
 			}
 		}
 	};

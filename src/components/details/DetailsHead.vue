@@ -8,7 +8,7 @@
                     <div class="arrow"></div>
                     <h3 class="popover-title">More Movies with {{movie.actor}}</h3>
                     <div class="popover-content">
-                        <p v-for="movie in getMoviesWithActor" v-html="movie"></p>
+                        <p v-for="movie in moviesWithActor" v-html="movie"></p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <div class="arrow"></div>
                     <h3 class="popover-title">Movies directed by {{movie.director}}</h3>
                     <div class="popover-content">
-                        <p v-for="movie in getMoviesWithDirector" v-html="movie"></p>
+                        <p v-for="movie in moviesWithDirector" v-html="movie"></p>
                     </div>
                 </div>
             </div>
@@ -42,13 +42,13 @@
 	        movie: function () {
 		        return this.$store.state.selectedMovie;
 	        },
-	        getMoviesWithActor: function () {
+	        moviesWithActor: function () {
 		        return this.$store.state.movies.filter(movie => movie.actor === this.$store.state.selectedMovie.actor).map(movie => {
 			        //TODO: Fix onActorClick
 		        	return `<span>${movie.title}</span>`;
 		        });
 	        },
-	        getMoviesWithDirector: function () {
+	        moviesWithDirector: function () {
 		        return this.$store.state.movies.filter(movie => movie.director === this.$store.state.selectedMovie.director).map(movie => {
 		        	return `<span>${movie.title}</span>`
 		        });

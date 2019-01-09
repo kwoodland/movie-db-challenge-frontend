@@ -1,6 +1,6 @@
 <template>
     <p class="source">
-        Source: <a :href="getSourceUrl" target="_blank">themoviedb.org</a>
+        Source: <a :href="sourceUrl" target="_blank">themoviedb.org</a>
     </p>
 </template>
 
@@ -8,7 +8,7 @@
 	export default {
 		name: "DetailsFooter",
 		computed: {
-			getSourceUrl: function () {
+			sourceUrl: function () {
 				return this.$store.state.selectedMovie.source;
 			}
         }
